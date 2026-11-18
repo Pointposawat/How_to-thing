@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>เก็บขยะ ปลูกต้นไม้</title>
+<style>
+:root{--bg:#eaf6e4;--card:#ffffff;--text:#16331c;--muted:#486a4e;--bar:#d6e8cf;--fill1:#45b24f;--fill2:#8bdc6e;--btn:#1f7a2e;--btnt:#ffffff;--focus:#0b57d0;--line:#c4dcbc;
+--sky1:#bfe6fb;--sky2:#f3fbff;--hill1:#a9dc8f;--hill2:#8ccf74;--grass1:#6cc25a;--grass2:#4da443;--soil:#7b5a3a;--soil2:#5f4329;--trk1:#9a6a3e;--trk2:#6b4524;--l1:#4fb558;--l2:#9be58f;--l3:#2e8a3f;--cloud:#ffffff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1e10;--card:#192b1a;--text:#eaf6e6;--muted:#a9c8ad;--bar:#2a4529;--fill1:#4cbf58;--fill2:#9be58f;--btn:#6fd47b;--btnt:#0b1c0d;--focus:#8ab4f8;--line:#2f4b2e;--sky1:#17304a;--sky2:#2b5273;--hill1:#2f6a3a;--hill2:#285c33;--grass1:#3f9a4a;--grass2:#2f7d3b;--soil:#6a4c30;--soil2:#503820;--trk1:#b0804f;--trk2:#80562d;--l1:#52bd5c;--l2:#9be58f;--l3:#2f8f40;--cloud:#cfe3f2;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1e10;--card:#192b1a;--text:#eaf6e6;--muted:#a9c8ad;--bar:#2a4529;--fill1:#4cbf58;--fill2:#9be58f;--btn:#6fd47b;--btnt:#0b1c0d;--focus:#8ab4f8;--line:#2f4b2e;--sky1:#17304a;--sky2:#2b5273;--hill1:#2f6a3a;--hill2:#285c33;--grass1:#3f9a4a;--grass2:#2f7d3b;--soil:#6a4c30;--soil2:#503820;--trk1:#b0804f;--trk2:#80562d;--l1:#52bd5c;--l2:#9be58f;--l3:#2f8f40;--cloud:#cfe3f2;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans Thai","Sarabun",system-ui,sans-serif;font-size:18px;line-height:1.5;display:flex;justify-content:center;padding:16px}
+main{width:100%;max-width:460px}
+header{text-align:center;margin-bottom:12px}
+h1{font-size:1.6rem;margin:0}
+.sub{color:var(--muted);margin:4px 0 0}
+.card{background:var(--card);border-radius:24px;padding:14px;box-shadow:0 6px 24px rgba(0,0,0,.1);border:1px solid var(--line)}
+svg{width:100%;height:auto;display:block;border-radius:16px}
+.sway{transform-origin:160px 260px;animation:sway 5s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.2deg)}}
+.c1{animation:drift 40s linear infinite}.c2{animation:drift 60s linear infinite;animation-delay:-25s}
+@keyframes drift{from{transform:translateX(-80px)}to{transform:translateX(400px)}}
+h2{font-size:1.4rem;text-align:center;margin:14px 0 4px}
+.pctbig{text-align:center;font-size:2.4rem;font-weight:800;color:var(--btn);line-height:1.1}
+.bar{height:22px;background:var(--bar);border-radius:99px;overflow:hidden;margin:10px 0}
+.fill{height:100%;width:0;background:linear-gradient(90deg,var(--fill1),var(--fill2));border-radius:99px;transition:width .4s}
+ol{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:0;margin:8px 0 16px}
+li{text-align:center;font-size:.8rem;color:var(--muted);border:2px solid var(--line);border-radius:14px;padding:6px 2px}
+li b{display:block;font-size:1.4rem}
+li.done{border-color:var(--fill1);color:var(--text);background:var(--bar)}
+.wrap{position:relative}
+button{font:inherit;border:0;border-radius:18px;cursor:pointer;min-height:56px}
+#add{width:100%;background:var(--btn);color:var(--btnt);font-weight:800;font-size:1.3rem;padding:14px;box-shadow:0 4px 0 rgba(0,0,0,.2)}
+#add:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.2)}
+#add:disabled{opacity:.6;cursor:default}
+.row{display:flex;gap:10px;justify-content:center;margin-top:10px;align-items:center;flex-wrap:wrap}
+.ghost{background:transparent;color:var(--muted);border:2px solid var(--line);padding:8px 18px;font-size:1rem;min-height:48px}
+.ghost.danger{color:var(--text);border-color:var(--btn)}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pop{position:absolute;left:50%;top:-6px;font-weight:800;color:var(--btn);pointer-events:none;animation:pop .9s ease-out forwards}
+@keyframes pop{from{opacity:1;transform:translate(-50%,0)}to{opacity:0;transform:translate(-50%,-60px)}}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 12px}
+.chip{background:var(--bar);color:var(--text);border:2px solid transparent;padding:8px 4px;min-height:64px;font-size:.9rem;border-radius:16px;line-height:1.2}
+.chip b{display:block;font-size:1.5rem}
+.chip[aria-pressed="true"]{border-color:var(--btn);background:var(--card);box-shadow:0 0 0 2px var(--btn) inset}
+.tip{background:var(--bar);border-radius:14px;padding:10px 12px;margin:12px 0 0;font-size:.95rem}
+.tally{color:var(--muted);font-size:.9rem;text-align:center;margin:10px 0 0}
+.toast{text-align:center;font-weight:700;color:var(--btn);min-height:1.6em;margin:6px 0}
+.conf{position:fixed;top:-20px;width:10px;height:14px;pointer-events:none;animation:fall 2.2s ease-in forwards;z-index:9}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>🌱 เก็บขยะ ปลูกต้นไม้</h1>
+  <p class="sub">เก็บขยะ 1 ชิ้น กดปุ่ม 1 ครั้ง ต้นไม้โตขึ้น 1%</p>
+</header>
+<div class="card">
+  <svg id="scene" viewBox="0 0 320 300" role="img" aria-label="ภาพต้นไม้ที่เติบโตตามจำนวนขยะที่เก็บ">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--sky1)"/><stop offset="1" style="stop-color:var(--sky2)"/></linearGradient>
+      <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--grass1)"/><stop offset="1" style="stop-color:var(--grass2)"/></linearGradient>
+      <linearGradient id="trk" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--trk2)"/><stop offset=".45" style="stop-color:var(--trk1)"/><stop offset="1" style="stop-color:var(--trk2)"/></linearGradient>
+      <radialGradient id="sun"><stop offset="0" stop-color="#fff3a8"/><stop offset=".5" stop-color="#ffd54a"/><stop offset="1" stop-color="#ffd54a" stop-opacity="0"/></radialGradient>
+    </defs>
+    <rect width="320" height="300" fill="url(#sky)"/>
+    <circle cx="262" cy="52" r="46" fill="url(#sun)"/>
+    <g class="c1" opacity=".9"><ellipse cx="40" cy="60" rx="30" ry="10" style="fill:var(--cloud)"/><ellipse cx="62" cy="52" rx="22" ry="12" style="fill:var(--cloud)"/><ellipse cx="22" cy="54" rx="16" ry="9" style="fill:var(--cloud)"/></g>
+    <g class="c2" opacity=".8"><ellipse cx="0" cy="105" rx="26" ry="8" style="fill:var(--cloud)"/><ellipse cx="18" cy="98" rx="18" ry="10" style="fill:var(--cloud)"/></g>
+    <ellipse cx="60" cy="262" rx="150" ry="55" style="fill:var(--hill2)"/>
+    <ellipse cx="270" cy="266" rx="160" ry="55" style="fill:var(--hill1)"/>
+    <path d="M0 262 Q80 248 160 258 T320 254 V300 H0Z" fill="url(#grass)"/>
+    <g class="sway"><g id="plant"></g></g>
+    <g fill="none" stroke-linecap="round" stroke-width="3" style="stroke:var(--l3)">
+      <path d="M20 280 q-2-12 -6-16 M20 280 q2-12 7-14 M20 280 q0-14 0-18"/>
+      <path d="M290 284 q-2-12 -6-16 M290 284 q2-12 7-14 M290 284 q0-14 0-18"/>
+      <path d="M95 290 q-1-9 -5-12 M95 290 q2-9 6-11"/>
+      <path d="M225 288 q-1-9 -5-12 M225 288 q2-9 6-11"/>
+    </g>
+    <g id="flowers"><circle cx="50" cy="278" r="3.5" fill="#ff8fb1"/><circle cx="262" cy="280" r="3.5" fill="#ffe066"/><circle cx="130" cy="286" r="3" fill="#fff"/><circle cx="198" cy="284" r="3" fill="#ff8fb1"/></g>
+  </svg>
+
+  <h2 id="stage"></h2>
+  <div class="pctbig" id="pct"></div>
+  <div class="bar" role="progressbar" aria-label="ความคืบหน้าของต้นไม้" aria-valuemin="0" aria-valuemax="100" id="pb"><div class="fill" id="fill"></div></div>
+  <ol aria-label="ขั้นการเติบโต">
+    <li id="m0"><b>🌰</b>0% เมล็ด</li>
+    <li id="m25"><b>🌱</b>25% ต้นกล้า</li>
+    <li id="m50"><b>🌳</b>50% ต้นไม้</li>
+    <li id="m100"><b>🍎</b>100% ออกผล</li>
+  </ol>
+  <div class="toast" id="toast" role="status"></div>
+  <div class="chips" id="chips" role="group" aria-label="เลือกประเภทขยะที่เก็บ"></div>
+  <div class="wrap">
+    <button id="add" type="button">♻️ เก็บขยะ +1%</button>
+  </div>
+  <div class="row" id="row"></div>
+  <p class="tally" id="tally"></p>
+  <p class="tip" id="tip"></p>
+  <p class="sr" id="live" aria-live="polite"></p>
+</div>
+</main>
+<script>
+var KEY="trash-tree-v2",OLD="trash-tree-pct",pct=0,shown=0,raf=null,hist=[],sel="plastic";
+var TYPES=[["plastic","🧴","ขวดพลาสติก"],["paper","📰","กระดาษ"],["glass","🍾","แก้ว"],["can","🥫","กระป๋อง"],["food","🍌","เศษอาหาร"],["other","🛍️","ขยะอื่นๆ"]];
+var TIPS=["ล้างขวดและกระป๋องก่อนทิ้ง จะรีไซเคิลได้ง่ายขึ้น","แยกเศษอาหารออกจากขยะอื่น เอาไปทำปุ๋ยหมักได้","พกถุงผ้าและขวดน้ำของตัวเอง ช่วยลดขยะตั้งแต่ต้นทาง","กระดาษที่เปื้อนอาหารมาก รีไซเคิลไม่ได้ ควรทิ้งเป็นขยะทั่วไป","ฝาขวดควรแยกออกจากขวดก่อนทิ้ง","ขยะทุกชิ้นที่เก็บ ช่วยให้ชุมชนสะอาดขึ้น"];
+function typeName(){for(var i=0;i<TYPES.length;i++)if(TYPES[i][0]===sel)return TYPES[i][2];return"ขยะ";}
+function toast(m){document.getElementById("toast").textContent=m;}
+function confetti(){var cols=["#e53935","#ffd54a","#45b24f","#42a5f5","#ff8fb1"];for(var i=0;i<40;i++){var d=document.createElement("i");d.className="conf";d.style.left=Math.random()*100+"vw";d.style.background=cols[i%5];d.style.animationDelay=Math.random()*.6+"s";d.setAttribute("aria-hidden","true");document.body.appendChild(d);(function(x){setTimeout(function(){x.remove();},3000);})(d);}}
+function milestone(){var M={25:"🌱 เมล็ดงอกแล้ว!",50:"🌳 ครึ่งทางแล้ว ต้นไม้แข็งแรงขึ้น!",75:"🌸 ใกล้แล้ว ต้นไม้เริ่มออกดอก!",100:"🎉 สำเร็จ! ต้นไม้ออกผลแล้ว ขอบคุณที่ช่วยเก็บขยะ"};toast(M[pct]||"");if(pct===100&&!reduce)confetti();}
+function buildChips(){var c=document.getElementById("chips");c.innerHTML=TYPES.map(function(t){return '<button type="button" class="chip" data-t="'+t[0]+'" aria-pressed="'+(t[0]===sel)+'"><b>'+t[1]+'</b>'+t[2]+'</button>';}).join("");c.onclick=function(e){var b=e.target.closest(".chip");if(!b)return;sel=b.dataset.t;[].forEach.call(c.children,function(x){x.setAttribute("aria-pressed",x===b);});ui();};}
+var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+try{var s=localStorage.getItem(KEY);if(s){hist=JSON.parse(s);}else{var o=parseInt(localStorage.getItem(OLD),10)||0;for(var i=0;i<Math.min(100,o);i++)hist.push("other");}}catch(e){hist=[];}
+if(!Array.isArray(hist))hist=[];hist=hist.slice(0,100);pct=hist.length;
+shown=pct;
+var plantEl=document.getElementById("plant");
+function leaf(x,y,s,a){return '<path d="M0 0C'+s*.3+' '+(-s*.6)+' '+s*1.1+' '+(-s*.5)+' '+s*1.2+' 0C'+s*1.1+' '+s*.5+' '+s*.3+' '+s*.6+' 0 0Z" transform="translate('+x+' '+y+') rotate('+a+')" style="fill:var(--l1);stroke:var(--l3);stroke-width:1.2"/>';}
+function plant(p){
+  var o='<ellipse cx="160" cy="262" rx="38" ry="10" style="fill:var(--soil2)"/><ellipse cx="160" cy="259" rx="32" ry="8" style="fill:var(--soil)"/>';
+  if(p<25){
+    o+='<ellipse cx="160" cy="256" rx="10" ry="7" fill="#8a5a2b" stroke="#4a3320" stroke-width="1.5"/><path d="M155 253q5-3 10 0" stroke="#c99a62" stroke-width="1.5" fill="none" stroke-linecap="round"/>';
+    if(p>=12){var t=(p-12)*1.3;o+='<path d="M160 253 q-1 '+(-t/2)+' 0 '+(-t)+'" stroke="#8bdc6e" stroke-width="3" fill="none" stroke-linecap="round"/>';if(t>8)o+=leaf(160,253-t,5,-30)+leaf(160,253-t,5,210);}
+  } else if(p<50){
+    var k=(p-25)/25,h=28+k*52,top=260-h;
+    o+='<path d="M160 260 Q154 '+(260-h/2)+' 160 '+top+'" style="stroke:var(--l3)" stroke-width="5" fill="none" stroke-linecap="round"/>';
+    o+=leaf(160,top,12+k*12,-35)+leaf(160,top,12+k*12,215)+leaf(160,top-6,8+k*8,-95);
+    if(k>.3){var y2=260-h*.55;o+=leaf(157,y2,8+k*9,200)+leaf(158,y2+4,8+k*9,-20);}
+  } else {
+    var k2=(p-50)/50,h2=70+k2*80,w=12+k2*18,r=26+k2*44,cy=260-h2,cx=160;
+    o+='<path d="M'+(cx-w*.9)+' 262 Q'+(cx-w*.5)+' 256 '+(cx-w/2)+' 250 C'+(cx-w/2)+' '+(260-h2*.5)+' '+(cx-w*.3)+' '+(260-h2*.7)+' '+(cx-w*.3)+' '+cy+' L'+(cx+w*.3)+' '+cy+' C'+(cx+w*.3)+' '+(260-h2*.7)+' '+(cx+w/2)+' '+(260-h2*.5)+' '+(cx+w/2)+' 250 Q'+(cx+w*.5)+' 256 '+(cx+w*.9)+' 262Z" fill="url(#trk)"/>';
+    o+='<path d="M'+(cx-w*.1)+' 252 q-2 '+(-h2*.3)+' 0 '+(-h2*.55)+'" stroke="rgba(0,0,0,.15)" stroke-width="2" fill="none" stroke-linecap="round"/>';
+    if(k2>.25){var bw=Math.max(3,w*.22),by=260-h2*.55;
+      o+='<path d="M'+cx+' '+by+' Q'+(cx-r*.3)+' '+(by-10)+' '+(cx-r*.7)+' '+(cy+r*.2)+'" stroke="url(#trk)" stroke-width="'+bw+'" fill="none" stroke-linecap="round"/>';
+      o+='<path d="M'+cx+' '+(by+8)+' Q'+(cx+r*.3)+' '+(by-4)+' '+(cx+r*.7)+' '+(cy+r*.25)+'" stroke="url(#trk)" stroke-width="'+bw+'" fill="none" stroke-linecap="round"/>';}
+    var B=[[0,-.1,1],[-.62,.25,.68],[.62,.25,.68],[-.38,-.48,.6],[.4,-.5,.6]];
+    B.forEach(function(b){o+='<circle cx="'+(cx+b[0]*r)+'" cy="'+(cy+b[1]*r)+'" r="'+(b[2]*r)+'" style="fill:var(--l3)"/>';});
+    B.forEach(function(b){o+='<circle cx="'+(cx+b[0]*r-1.5)+'" cy="'+(cy+b[1]*r-3)+'" r="'+(b[2]*r*.86)+'" style="fill:var(--l1)"/>';});
+    B.forEach(function(b){o+='<circle cx="'+(cx+b[0]*r-b[2]*r*.25)+'" cy="'+(cy+b[1]*r-b[2]*r*.3)+'" r="'+(b[2]*r*.42)+'" style="fill:var(--l2)" opacity=".55"/>';});
+    var F=[[-.5,.2],[.45,.05],[.1,.55],[-.12,-.38],[.72,.42],[-.78,.5]];
+    if(k2>.5&&p<100){F.forEach(function(f,i){if(i%2==0||k2>.75)o+='<circle cx="'+(cx+f[0]*r)+'" cy="'+(cy+f[1]*r)+'" r="3.2" fill="#fff"/><circle cx="'+(cx+f[0]*r)+'" cy="'+(cy+f[1]*r)+'" r="1.4" fill="#ff8fb1"/>';});}
+    if(p>=100){F.forEach(function(f){var x=cx+f[0]*r,y=cy+f[1]*r;o+='<circle cx="'+x+'" cy="'+y+'" r="6" fill="#e53935"/><circle cx="'+(x-2)+'" cy="'+(y-2)+'" r="1.8" fill="#fff" opacity=".7"/><path d="M'+x+' '+(y-6)+' q1-4 3-5" stroke="#4a3320" stroke-width="1.3" fill="none"/>';});
+      o+='<text x="'+(cx-r-6)+'" y="'+(cy-r*.5)+'" font-size="16">✨</text><text x="'+(cx+r-6)+'" y="'+(cy-r*.7)+'" font-size="14">✨</text>';}
+  }
+  return o;
+}
+function stageName(p){return p>=100?"🍎 ต้นไม้โตเต็มที่ ออกผลแล้ว!":p>=50?"🌳 ต้นไม้กำลังโต":p>=25?"🌱 ต้นกล้า":"🌰 เมล็ดพันธุ์";}
+function ui(){
+  var n=stageName(pct);
+  document.getElementById("stage").textContent=n;
+  document.getElementById("pct").textContent=pct+"%";
+  document.getElementById("fill").style.width=pct+"%";
+  var pb=document.getElementById("pb");pb.setAttribute("aria-valuenow",pct);pb.setAttribute("aria-valuetext",pct+" เปอร์เซ็นต์ "+n);
+  [[0,"m0"],[25,"m25"],[50,"m50"],[100,"m100"]].forEach(function(m){document.getElementById(m[1]).className=pct>=m[0]?"done":"";});
+  var b=document.getElementById("add");b.disabled=pct>=100;
+  b.textContent=pct>=100?"🎉 ครบ 100% แล้ว":"♻️ เก็บ"+typeName()+" +1%";
+  document.getElementById("live").textContent="ตอนนี้ "+pct+" เปอร์เซ็นต์ "+n;
+  var c={};hist.forEach(function(t){c[t]=(c[t]||0)+1;});
+  document.getElementById("tally").textContent=pct?TYPES.filter(function(t){return c[t[0]];}).map(function(t){return t[1]+" "+t[2]+" "+c[t[0]];}).join(" · "):"ยังไม่ได้เก็บขยะ เริ่มกันเลย!";
+  document.getElementById("tip").textContent="💡 "+TIPS[Math.floor(pct/10)%TIPS.length];
+  var u=document.getElementById("undo");if(u)u.disabled=!pct;
+}
+function tween(){
+  if(raf)cancelAnimationFrame(raf);
+  if(reduce){shown=pct;plantEl.innerHTML=plant(shown);return;}
+  (function step(){var d=pct-shown;if(Math.abs(d)<.05){shown=pct;plantEl.innerHTML=plant(shown);return;}shown+=d*.18;plantEl.innerHTML=plant(shown);raf=requestAnimationFrame(step);})();
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(hist));}catch(e){}}
+function pop(){var s=document.createElement("span");s.className="pop";s.textContent="+1%";s.setAttribute("aria-hidden","true");var w=document.querySelector(".wrap");w.appendChild(s);setTimeout(function(){s.remove();},900);}
+document.getElementById("add").onclick=function(){if(pct<100){hist.push(sel);pct=hist.length;save();ui();tween();pop();milestone();}};
+var row=document.getElementById("row");
+var ROW='<button class="ghost" id="undo" type="button">↩️ ยกเลิกชิ้นล่าสุด</button><button class="ghost" id="reset" type="button">เริ่มใหม่</button>';
+function bind(){document.getElementById("reset").onclick=askReset;document.getElementById("undo").onclick=function(){if(hist.length){hist.pop();pct=hist.length;save();ui();tween();toast("");}};}
+function showReset(){row.innerHTML=ROW;bind();ui();}
+function askReset(){
+  row.innerHTML='<span>เริ่มใหม่จริงหรือไม่?</span><button class="ghost danger" id="yes" type="button">ใช่ เริ่มใหม่</button><button class="ghost" id="no" type="button">ยกเลิก</button>';
+  document.getElementById("no").onclick=showReset;
+  document.getElementById("yes").onclick=function(){hist=[];pct=0;save();toast("");ui();tween();showReset();};
+  document.getElementById("yes").focus();
+}
+row.innerHTML=ROW;buildChips();bind();
+plantEl.innerHTML=plant(shown);ui();
+</script>
+</body>
+</html>
